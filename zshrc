@@ -13,6 +13,11 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
+
+##########
+# PROMPT #
+##########
+
 autoload -U colors && colors
 
 # My custom prompt. 
@@ -23,10 +28,30 @@ PROMPT="%0(?..%{$bg[red]%}%?%{$reset_color%}
 
 RPROMPT="[ %D{%d.%m.%Y} %* ]"
 
-alias ls="ls --color=auto --indicator-style=slash --group-directories-first"
+
+###########
+# ALIASES #
+###########
+
+# ls is a tool from the GNU Core Utilities (coreutils). From version 6 on it supports the parameter --group-directories-first.
+coreutilsMainVersion=`ls --version | head -n 1 | awk '{print substr($NF, 0, 1)}'`
+if [[ $coreutilsMainVersion -ge 6 ]]; then
+	alias ls="ls --color=auto --indicator-style=slash --group-directories-first"
+else
+	alias ls="ls --color=auto --indicator-style=slash"
+fi
+
 alias ll="ls -l --all --human-readable"
 # list sorted (by file size)
 alias lso="ll -S"
 # Show process tree
 alias pstree="ps -eF --forest --headers"
 alias reloadrc="source ~/.zshrc"
+
+
+########
+# PATH #
+########
+
+# If the directory ~/bin exists prepend it to PATH.
+if [[ -d $HOME/bin ]] then PATH=$HOME/bin:$PATH fi
