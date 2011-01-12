@@ -26,7 +26,7 @@ autoload -U colors && colors
 PROMPT="%0(?..%{$bg[red]%}%?%{$reset_color%}
 )%{$fg[green]%}%n@%m%{$reset_color%}:%~ %{$fg[red]%}%#%{$reset_color%} "
 
-RPROMPT="[ %D{%d.%m.%Y} %* ]"
+RPROMPT="[ %D{%d.%m.%Y %H:%M:%S} ]"
 
 
 ###########
