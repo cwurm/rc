@@ -55,3 +55,10 @@ alias grep="grep --binary-files=without-match --line-number"  # Don't search in 
 
 # If the directory ~/bin exists prepend it to PATH.
 if [[ -d $HOME/bin ]] then PATH=$HOME/bin:$PATH fi
+
+
+###############
+# Environment #
+###############
+
+export EDITOR=vim
