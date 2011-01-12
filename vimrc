@@ -12,7 +12,7 @@ set hlsearch " highlight search
 set incsearch " search as you type
 set ignorecase " ignore case when searching
 
-set nowrap
+set wrap
 set linebreak	" Wrap at word
 
 colorscheme delek-mod
