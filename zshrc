@@ -41,12 +41,12 @@ else
 	alias ls="ls --color=auto --indicator-style=slash"
 fi
 
-
 alias ll="ls -l --all --human-readable"
 alias lso="ll -S"  # list sorted (by file size) 
 alias pstree="ps -eF --forest --headers"  # Show process tree 
 alias reloadrc="source ~/.zshrc"
 alias grep="grep --binary-files=without-match --line-number"  # Don't search in binary files, show line number
+alias igrep="grep --ignore-case"
 
 
 ########
