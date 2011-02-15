@@ -33,12 +33,16 @@ RPROMPT="[ %D{%d.%m.%Y %H:%M:%S} ]"
 # ALIASES #
 ###########
 
+# -C: force multi-column mode (see [1])
+# --color=always: always use coloring (see [1])
+# --indicator-style=slash: append slash ('/') to directories
+# --group-directories-first: list directories before files (only available in ls version 6 or higher)
 # ls is a tool from the GNU Core Utilities (coreutils). From version 6 on it supports the parameter --group-directories-first.
-coreutilsMainVersion=`ls --version | head -n 1 | awk '{print substr($NF, 0, 1)}'`
+coreutilsMainVersion=`ls --version | head -n 1 | awk '{print substr($NF, 1, 1)}'`
 if [[ $coreutilsMainVersion -ge 6 ]]; then
-	alias ls="ls --color=auto --indicator-style=slash --group-directories-first"
+	alias ls="ls -C --color=always --indicator-style=slash --group-directories-first"
 else
-	alias ls="ls --color=auto --indicator-style=slash"
+	alias ls="ls -C --color=always --indicator-style=slash"
 fi
 
 alias ll="ls -l --all --human-readable"
@@ -47,7 +51,10 @@ alias pstree="ps -eF --forest --headers"  # Show process tree
 alias reloadrc="source ~/.zshrc"
 alias grep="grep --binary-files=without-match --line-number"  # Don't search in binary files, show line number
 alias igrep="grep --ignore-case"
+alias less="less --RAW-CONTROL-CHARS"	# interpret ANSI "color" escape sequences (see also [1]) 
+alias rm="rm -I"	# safety precaution, see rm(1)
 
+# [1] http://unix.stackexchange.com/questions/7164/scrolling-through-ls-output-without-a-mouse/7178#7178 
 
 ########
 # PATH #
@@ -61,4 +68,7 @@ if [[ -d $HOME/bin ]] then PATH=$HOME/bin:$PATH fi
 # Environment #
 ###############
 
-export EDITOR=vim
+# Setting VISUAL instead of EDITOR because of comments on [1]
+export VISUAL=vim
+
+# [1] http://unix.stackexchange.com/questions/7186/can-less-invoke-vim-instead-of-the-default-vi-when-i-hit-the-v-key/7188#7188
