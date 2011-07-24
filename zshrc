@@ -69,6 +69,29 @@ if [[ -d $HOME/bin ]] then PATH=$HOME/bin:$PATH fi
 ###############
 
 # Setting VISUAL instead of EDITOR because of comments on [1]
+# [1] http://unix.stackexchange.com/questions/7186/can-less-invoke-vim-instead-of-the-default-vi-when-i-hit-the-v-key/7188#7188
 export VISUAL=vim
 
-# [1] http://unix.stackexchange.com/questions/7186/can-less-invoke-vim-instead-of-the-default-vi-when-i-hit-the-v-key/7188#7188
+
+#############
+# FUNCTIONS #
+#############
+
+function backup() {
+	if [[ -f "$1" ]]; then
+		if [[ ! -d "$HOME/backups" ]]; then
+			echo "Creating backup directory at $HOME/backups"
+			mkdir $HOME/backups
+		fi
+        backupFile="$HOME/backups/$HOST:$(pwd -P | sed 's|/|\\|g')\\$(basename $1)-$(date +%Y-%m-%d-%H:%M)"
+		if [[ -f "$backupFile" ]]; then
+			echo "File already exists: $backupFile"
+			return 1
+		else 
+			cp $1 $backupFile
+		fi
+	else
+		echo "Not a file: $1"
+		return 1
+	fi
+}
