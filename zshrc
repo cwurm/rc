@@ -86,6 +86,8 @@ function backup() {
 			echo "Creating backup directory at $HOME/backups"
 			mkdir $HOME/backups
 		fi
+
+		pushd -q $(dirname $1)
 		# Format: hostname.path.to.file.<timestamp in extended ISO 8601 format (no time zone at the end, assume CE(S)T)>
 		backupFile="$HOME/backups/$HOST$(pwd -P | sed 's|/|.|g').$(basename $1)-$(date +%Y-%m-%dT%H:%M:%S)"
 		if [[ -f "$backupFile" ]]; then
@@ -95,6 +97,7 @@ function backup() {
 			cp $1 $backupFile
 			echo "Backed up as $backupFile"
 		fi
+		popd -q
 	else
 		echo "Not a file: $1"
 		return 1
