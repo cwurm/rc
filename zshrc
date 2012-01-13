@@ -39,11 +39,11 @@ RPROMPT="[ %D{%d.%m.%Y %H:%M:%S} ]"
 # --group-directories-first: list directories before files (only available in ls version 6 or higher)
 # ls is a tool from the GNU Core Utilities (coreutils). From version 6 on it supports the parameter --group-directories-first.
 coreutilsMainVersion=`ls --version | head -n 1 | awk '{print substr($NF, 1, 1)}'`
-if [[ $coreutilsMainVersion -ge 6 ]]; then
+if [[ $coreutilsMainVersion -ge 6 ]] {
 	alias ls="ls -C --color=always --indicator-style=slash --group-directories-first"
-else
+} else {
 	alias ls="ls -C --color=always --indicator-style=slash"
-fi
+}
 
 alias ll="ls -l --all --human-readable"
 alias lso="ll -S"  # list sorted (by file size) 
@@ -64,7 +64,9 @@ alias g++="g++ -Wall -Wextra -Werror -Wfatal-errors"
 ########
 
 # If the directory ~/bin exists prepend it to PATH.
-if [[ -d $HOME/bin ]] then PATH=$HOME/bin:$PATH fi
+if [[ -d $HOME/bin ]] {
+	PATH=$HOME/bin:$PATH
+}
 
 
 ###############
@@ -81,27 +83,27 @@ export VISUAL=vim
 #############
 
 function backup() {
-	if [[ -f "$1" ]]; then
-		if [[ ! -d "$HOME/backups" ]]; then
+	if [[ -f "$1" ]] {
+		if [[ ! -d "$HOME/backups" ]] {
 			echo "Creating backup directory at $HOME/backups"
 			mkdir $HOME/backups
-		fi
+		}
 
 		pushd -q $(dirname $1)
 		# Format: hostname.path.to.file.<timestamp in extended ISO 8601 format (no time zone at the end, assume CE(S)T)>
 		backupFile="$HOME/backups/$HOST$(pwd -P | sed 's|/|.|g').$(basename $1)-$(date +%Y-%m-%dT%H:%M:%S)"
-		if [[ -f "$backupFile" ]]; then
+		if [[ -f "$backupFile" ]] {
 			echo "File already exists: $backupFile"
 			return 1
-		else 
+		} else {
 			cp $1 $backupFile
 			echo "Backed up as $backupFile"
-		fi
+		}
 		popd -q
-	else
+	} else {
 		echo "Not a file: $1"
 		return 1
-	fi
+	}
 }
 
 
