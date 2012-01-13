@@ -83,6 +83,7 @@ export VISUAL=vim
 ########
 
 # Case-insensitive autocompletion (only a->A, not A->a)
+# From http://zsh.sourceforge.net/Guide/zshguide06.html Section 6.7.1
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
 
