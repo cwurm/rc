@@ -103,3 +103,13 @@ function backup() {
 		return 1
 	fi
 }
+
+
+###############################
+# HOST-SPECIFIC CONFIGURATION #
+###############################
+
+if [[ -f "$HOME/.zshrc.local" ]] {
+	source "$HOME/.zshrc.local"
+}
+
