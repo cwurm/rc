@@ -78,6 +78,14 @@ if [[ -d $HOME/bin ]] {
 export VISUAL=vim
 
 
+########
+# MISC #
+########
+
+# Case-insensitive autocompletion (only a->A, not A->a)
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+
+
 #############
 # FUNCTIONS #
 #############
