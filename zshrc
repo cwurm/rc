@@ -106,12 +106,17 @@ function backup() {
 			echo "File already exists: $backupFile"
 			return 1
 		} else {
-			cp $1 $backupFile
+			cp $(basename $1) $backupFile
 			echo "Backed up as $backupFile"
 		}
 		popd -q
 	} else {
 		echo "Not a file: $1"
+		return 1
+	}
+	
+	if [[ ! -f $backupFile ]] {
+		echo "Failed to back up."
 		return 1
 	}
 }
