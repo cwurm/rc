@@ -56,6 +56,7 @@ alias rm="rm -I"	# safety precaution, see rm(1)
 
 # http://stackoverflow.com/q/8801198/235203
 alias g++="g++ -Wall -Wextra -Werror"
+alias nm="nm --demangle"
 
 # [1] http://unix.stackexchange.com/questions/7164/scrolling-through-ls-output-without-a-mouse/7178#7178 
 
