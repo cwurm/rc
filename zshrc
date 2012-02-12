@@ -38,15 +38,19 @@ RPROMPT="[ %D{%d.%m.%Y %H:%M:%S} ]"
 # --indicator-style=slash: append slash ('/') to directories
 # --group-directories-first: list directories before files (only available in ls version 6 or higher)
 # ls is a tool from the GNU Core Utilities (coreutils). From version 6 on it supports the parameter --group-directories-first.
-coreutilsMainVersion=`ls --version | head -n 1 | awk '{print substr($NF, 1, 1)}'`
-if [[ $coreutilsMainVersion -ge 6 ]] {
-	alias ls="ls -C --color=always --indicator-style=slash --group-directories-first"
+if [[ $OSTYPE == darwin* ]] {
+	alias ls="ls -F -G"
+	alias ll="ls -l -a -h"
 } else {
-	alias ls="ls -C --color=always --indicator-style=slash"
+	coreutilsMainVersion=`ls --version | head -n 1 | awk '{print substr($NF, 1, 1)}'`
+	if [[ $coreutilsMainVersion -ge 6 ]] {
+		alias ls="ls -C --color=always --indicator-style=slash --group-directories-first"
+	} else {
+		alias ls="ls -C --color=always --indicator-style=slash"
+	}
+	alias ll="ls -l --all --human-readable"
 }
 
-alias ll="ls -l --all --human-readable"
-alias lso="ll -S"  # list sorted (by file size) 
 alias pstree="ps -eF --forest --headers"  # Show process tree 
 alias reloadrc="source ~/.zshrc"
 alias grep="grep --binary-files=without-match --line-number"  # Don't search in binary files, show line number
