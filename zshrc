@@ -56,10 +56,10 @@ alias reloadrc="source ~/.zshrc"
 alias grep="grep --binary-files=without-match --line-number"  # Don't search in binary files, show line number
 alias igrep="grep --ignore-case"
 alias less="less --RAW-CONTROL-CHARS"	# interpret ANSI "color" escape sequences (see also [1]) 
-alias rm="rm -I"	# safety precaution, see rm(1)
+#alias rm="rm -I"	# safety precaution, see rm(1)
 
 # http://stackoverflow.com/q/8801198/235203
-alias g++="g++ -Wall -Wextra -Wshadow"
+alias g++="g++ -Wall -Wextra -Werror"
 alias nm="nm --demangle"
 
 # [1] http://unix.stackexchange.com/questions/7164/scrolling-through-ls-output-without-a-mouse/7178#7178 
@@ -70,7 +70,7 @@ alias nm="nm --demangle"
 
 # If the directory ~/bin exists prepend it to PATH.
 if [[ -d $HOME/bin ]] {
-	PATH=$HOME/bin:$PATH
+	PATH=$HOME/bin:/usr/local/share/python:$PATH
 }
 
 
@@ -81,6 +81,8 @@ if [[ -d $HOME/bin ]] {
 # Setting VISUAL instead of EDITOR because of comments on [1]
 # [1] http://unix.stackexchange.com/questions/7186/can-less-invoke-vim-instead-of-the-default-vi-when-i-hit-the-v-key/7188#7188
 export VISUAL=vim
+
+export LC_ALL="en_US.UTF-8"
 
 
 ########
@@ -134,3 +136,4 @@ if [[ -f "$HOME/.zshrc.local" ]] {
 	source "$HOME/.zshrc.local"
 }
 
+export XML_CATALOG_FILES=/usr/local/etc/xml/catalog

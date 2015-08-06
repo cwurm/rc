@@ -2,32 +2,20 @@
 # ~/.screenrc
 ################################################
 
-screen -t "switche"
-screen -t "tafelrunde12"          
-screen -t "cabal"
-screen -t "uther"
-screen -t "vortigern"
-screen -t "tristan"
-screen -t "mail"
-screen -t "jabber"
-screen -t "james"
-screen -t "lucan"
-screen -t "nachtigern"
-screen -t "www"
-screen -t "www-cabal"
+#screen -t "www-cabal"
 
 # =======================================================
 #       VARIABLEN
 # =======================================================
 autodetach            on              # Standard: on
 crlf                  off             # Standard: off
-deflogin              off             # Standard: on
+#deflogin              off             # Standard: on
 hardcopy_append       on              # Standard: off
 startup_message       off             # Standard: on
 vbell                 on
 defscrollback         1000            # Standard: 100
 silencewait           15              # Standard: 30
-shell                 bash
+shell                 zsh
 activity              "activity in %n (%t) [%w:%s]~"
 bell                  "%C -> %n%f %t activity!"
 vbell_msg             " *bing bing bing* "
@@ -83,4 +71,4 @@ hardstatus alwayslastline "%{= kg}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{=b kR}(%{W}
 # 9 transparent       y    yellow          u    underline
 
 # Erhöht die maximale Anzahl von möglichen Screens
-maxwin 99
+#maxwin 99
