@@ -28,6 +28,16 @@ PROMPT="%0(?..%{$bg[red]%}%?%{$reset_color%}
 
 RPROMPT="[ %D{%d.%m.%Y %H:%M:%S} ]"
 
+##########
+# COLORS #
+##########
+
+# Default
+#export LSCOLOR = "exfxcxdxbxegedabagacad"
+
+# Cyan foregound for directories
+export LSCOLORS="gxfxcxdxbxegedabagacad"
+
 
 ###########
 # ALIASES #
