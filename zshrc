@@ -2,7 +2,7 @@
 HISTFILE=~/.histfile
 HISTSIZE=10000
 SAVEHIST=10000
-setopt appendhistory autocd extendedglob notify
+setopt appendhistory autocd extendedglob notify incappendhistory
 unsetopt beep
 bindkey -e
 # End of lines configured by zsh-newuser-install
@@ -78,6 +78,8 @@ alias nm="nm --demangle"
 # PATH #
 ########
 
+PATH=/usr/local/bin:$PATH
+
 # If the directory ~/bin exists prepend it to PATH.
 if [[ -d $HOME/bin ]] {
 	PATH=$HOME/bin:/usr/local/share/python:$PATH
@@ -147,3 +149,6 @@ if [[ -f "$HOME/.zshrc.local" ]] {
 }
 
 export XML_CATALOG_FILES=/usr/local/etc/xml/catalog
+
+bindkey '^[^[[C' forward-word
+bindkey '^[^[[D' backward-word
